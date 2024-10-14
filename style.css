@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+#info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 700px;
+}
+
+.board {
+  background-color: black;
+  color: aliceblue;
+}
+
+#game {
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 600px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  background-color: DodgerBlue;
+}
+
+#game > .field {
+  background-color: #f1f1f1;
+  width: 14%;
+  height: 14%;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  border-radius: 90%;
+  display: inline-block;
+  justify-content: center;
+}
