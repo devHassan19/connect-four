@@ -26,13 +26,12 @@ fillRow()
 
 const init = () => {
   board = [
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', ''],
-    ['', '', '', '', '', '']
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '']
   ]
   turn = 'p1'
   winner = false
@@ -52,24 +51,21 @@ const updateBoard = () => {
   })
 }
 function updateMessage() {
-  if (tie == false) {
+  // if (tie == false) {
+  //   messageEl.textContent = ' tie no one won'
+  // } else if (winner == true) {
+  //   messageEl.textContent = `The winner is ${turn}`
+  // } else {
+  //   messageEl.textContent = `Your turn ${turn}`
+  // }
+  // messageEl.textContent = `${turn} turn `
+  if (tie == true) {
     messageEl.textContent = ' tie no one won'
-  } else if (winner == true) {
-    messageEl.textContent = `The winner is ${turn}`
   } else {
-    messageEl.textContent = `Your turn ${turn}`
+    messageEl.textContent = `${turn} turn `
   }
-  messageEl.textContent = `${turn} turn `
 }
 
-const checkForTie = () => {
-  if (winner == true) return
-  if (board.includes('')) {
-    tie = turn
-  } else {
-    tie = false
-  }
-}
 const changeTurn = () => {
   if (turn == 'p1') {
     turn = 'p2'
@@ -77,9 +73,17 @@ const changeTurn = () => {
     turn = 'p1'
   }
 }
-
-const placePiece = (index) => {
-  board[index] = turn
+const checkForTie = () => {
+  //if (winner == true) return
+  for (let i = 0; i < column.length; i++) {
+    for (let j = 0; j < column[i].length; j++) {
+      if (board[i][j] == '') {
+        tie = false
+      } else {
+        tie = true
+      }
+    }
+  }
 }
 
 const fillCell = (index) => {
@@ -96,14 +100,12 @@ const fillCell = (index) => {
             column[i][j].style.backgroundColor = 'blue'
             column[i][j].innerText = turn
             board[i][j] = 'p1'
-            turn = 'p2'
           } else if (turn == 'p2') {
             column[i][j].style.backgroundColor = 'red'
             column[i][j].innerText = turn
             board[i][j] = 'p2'
-            turn = 'p1'
           }
-          console.log()
+
           break
         }
       }
@@ -113,19 +115,21 @@ const fillCell = (index) => {
 }
 
 const handleClick = (event) => {
-  updateMessage()
   if (!event.target.classList.contains('field')) return
-
   const fieldIndex = event.target.id
   const index = parseInt(fieldIndex)
 
-  // if (board[index] === 'p1' || board[index] === 'p2' || winner) return
-  //checkForTie()
-  fillCell(fieldIndex)
-  console.log(board)
-  // console.log(column)
+  if (board[index] === 'p1' || board[index] === 'p2' || winner) return
 
+  fillCell(fieldIndex)
   checkForTie()
+  console.log(tie)
+
+  console.log(checkForTie())
+
+  changeTurn()
+  updateMessage()
+  console.log(board)
 }
 
 fieldEls.forEach((field) => {
