@@ -39,9 +39,10 @@ const init = () => {
   tie = false
 }
 init()
+
 const updateBoard = () => {
-  board.forEach((input, id) => {
-    fieldEls[id].textContent = input
+  column.forEach((input, id) => {
+    board[id] = input.innerText
 
     if (input === 'p1') {
       fieldEls[id].style.backgroundColor = 'red'
@@ -51,16 +52,24 @@ const updateBoard = () => {
   })
 }
 function updateMessage() {
-  if (tie == true) {
+  if (tie == false) {
     messageEl.textContent = ' tie no one won'
   } else if (winner == true) {
     messageEl.textContent = `The winner is ${turn}`
   } else {
     messageEl.textContent = `Your turn ${turn}`
   }
-  messageEl.textContent = turn
+  messageEl.textContent = `${turn} turn `
 }
 
+const checkForTie = () => {
+  if (winner == true) return
+  if (board.includes('')) {
+    tie = turn
+  } else {
+    tie = false
+  }
+}
 const changeTurn = () => {
   if (turn == 'p1') {
     turn = 'p2'
@@ -80,17 +89,21 @@ const fillCell = (index) => {
         return true
       }
     })
-    console.log(isHere)
     if (isHere) {
       for (let j = 0; j < column[i].length; j++) {
         if (column[i][j].style.backgroundColor == '') {
           if (turn == 'p1') {
             column[i][j].style.backgroundColor = 'blue'
+            column[i][j].innerText = turn
+            board[i][j] = 'p1'
             turn = 'p2'
           } else if (turn == 'p2') {
             column[i][j].style.backgroundColor = 'red'
+            column[i][j].innerText = turn
+            board[i][j] = 'p2'
             turn = 'p1'
           }
+          console.log()
           break
         }
       }
@@ -99,27 +112,20 @@ const fillCell = (index) => {
   }
 }
 
-const _fillCell = (clickedColumn) => {
-  clickedColumn.style.backgroundColor = turn
-  clickedColumn.innerText = turn
-  console.log({ turn })
-}
-
 const handleClick = (event) => {
-  console.log(event.target.innerText)
   updateMessage()
   if (!event.target.classList.contains('field')) return
 
   const fieldIndex = event.target.id
   const index = parseInt(fieldIndex)
 
-  if (board[index] === 'p1' || board[index] === 'p2' || winner) return
-
+  // if (board[index] === 'p1' || board[index] === 'p2' || winner) return
+  //checkForTie()
   fillCell(fieldIndex)
+  console.log(board)
+  // console.log(column)
 
-  //placePiece(index)
-  //changeTurn()
-  //updateBoard()
+  checkForTie()
 }
 
 fieldEls.forEach((field) => {
