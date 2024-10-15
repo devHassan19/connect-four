@@ -5,14 +5,28 @@ let board
 let turn
 let winner
 let tie
+let nameP1
+let nameP2
 /*------------------------ Cached Element References ------------------------*/
 const startGame = document.getElementById('start')
 const fieldEls = document.querySelectorAll('.field')
 const messageEl = document.getElementById('message')
 const resetBtnEl = document.getElementById('rest')
+const p1Info = document.querySelector('.boardp1')
+const p2Info = document.querySelector('.boardp2')
+
 /*-------------------------------- Functions --------------------------------*/
 
 /*----------------------------- Event Listeners -----------------------------*/
+
+const infoName = () => {
+  nameP1 = document.querySelector('#play1').value
+  nameP2 = document.querySelector('#play2').value
+  p1Info.textContent = nameP1
+  p2Info.textContent = nameP2
+  p1Info.style.backgroundColor = 'blue'
+  p2Info.style.backgroundColor = 'red'
+}
 
 const column = [[], [], [], [], [], []]
 
@@ -25,19 +39,6 @@ const fillRow = () => {
 
 fillRow()
 
-const iinit = () => {
-  board = [
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '']
-  ]
-  turn = 'p1'
-  winner = false
-  tie = false
-}
 const init = () => {
   board = [
     ['', '', '', '', '', '', ''],
@@ -47,7 +48,7 @@ const init = () => {
     ['', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '']
   ]
-  turn = 'p1'
+  turn = nameP1
   winner = false
   tie = false
   fieldEls.forEach((field) => {
@@ -57,6 +58,7 @@ const init = () => {
 }
 
 const startNewGame = () => {
+  infoName()
   init()
   messageEl.textContent = `Your turn: ${turn}`
 }
@@ -93,7 +95,7 @@ const rest = () => {
 }
 const changeTurn = () => {
   if (winner == true) return
-  turn = turn === 'p1' ? 'p2' : 'p1'
+  turn = turn === `${nameP1}` ? `${nameP2}` : `${nameP1}`
 }
 
 const checkForTie = () => {
@@ -136,11 +138,11 @@ const fillCell = (index) => {
     if (isHere) {
       for (let j = 0; j < column[i].length; j++) {
         if (column[i][j].style.backgroundColor == '') {
-          if (turn == 'p1') {
+          if (turn == `${nameP1}`) {
             column[i][j].style.backgroundColor = 'blue'
             column[i][j].innerText = turn
             board[i][j] = 'p1'
-          } else if (turn == 'p2') {
+          } else if (turn == `${nameP2}`) {
             column[i][j].style.backgroundColor = 'red'
             column[i][j].innerText = turn
             board[i][j] = 'p2'

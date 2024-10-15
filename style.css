@@ -9,9 +9,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 30px;
   flex-direction: column;
+  width: 600px;
+  height: 100px;
 }
 
+div {
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+}
+div > input {
+  width: 30%;
+  height: 60%;
+}
 #display {
   display: flex;
   justify-content: space-between;
@@ -19,6 +31,17 @@ body {
   gap: 700px;
 }
 
+.boardp1 {
+  font-size: 40px;
+  width: 140px;
+  height: 60px;
+}
+
+.boardp2 {
+  font-size: 40px;
+  width: 140px;
+  height: 60px;
+}
 .board {
   background-color: black;
   color: aliceblue;
@@ -45,4 +68,12 @@ body {
   border-radius: 90%;
   display: inline-block;
   justify-content: center;
+}
+
+#start {
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 60px;
+  margin: 10px;
 }
