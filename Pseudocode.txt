@@ -1,0 +1,28 @@
+//1) Define the required variables and function used to the game.
+
+  a-Define variables for player 1 & 2 to store name and color 
+  b- store the element from html in variables to display for the user the style of game 
+  c- Define render function to display the state of game and if there is winner or the game still continuous after that chose witch player turn
+  d- Define rest button to restart the game and make the game ready to playing again  
+  
+//2) players input name and select color.
+  a- The player should input his name and chose the uniqe color for him from the color that show in chooses    
+  b- The player filled will be in separate corner to display his information 
+
+//3) Start button, the game state should be initialized, and call render function   
+  a- In the beginning the turn will start in player1 to chose the row and start playing by click on the row  
+  b- after player1 playing render function will the state and check the turn to witch player to switch the turn to another player  
+  c- render will repeat this steps until a winner by fulfilling the conditions or the grid is full 
+
+
+//4) The state of the game should be rendered to the user.
+  a- the render function work by check if any player connect 4 then will be the winner and will display message that show witch player the winner 
+  b- if the all filed of grid is full and there is no winner that mean the result is tie, in this case the display will show message in the display the result is tie
+  c- if no winner and the filed not full , the render function will check the turn for witch player to switch the turn to another player 
+
+//5) Handle a player clicking a square with a `handleClick` function.
+    a- handleClick this is the main function , this function will be the event in this game in the addEventListener 
+    b- include this function contain will call an functions by sending order for the game work well with out error by doing the mission and get the tasks done in order. 
+    
+//6) Create Reset functionality.
+    // In the end of box of the game will be a button, this button is response of restart the game by click on button will call function its work by clear the fields and clear the players names and colors and make the game ready to playing again.  

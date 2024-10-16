@@ -83,7 +83,7 @@ const rest = () => {
     ['', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '']
   ]
-  turn = 'p1'
+  turn = nameP1
   winner = false
   tie = false
 

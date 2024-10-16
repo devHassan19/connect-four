@@ -12,10 +12,13 @@ body {
   margin: 30px;
   flex-direction: column;
   width: 600px;
-  height: 100px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
 div {
+  align-items: center;
   font-size: 30px;
   width: 100%;
   height: 100%;
@@ -71,9 +74,39 @@ div > input {
 }
 
 #start {
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 120px;
   height: 60px;
   margin: 10px;
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#start:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+#rest {
+  width: 120px;
+  height: 60px;
+  margin: 10px;
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+#rest:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }
